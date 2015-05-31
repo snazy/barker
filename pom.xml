@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.caffinitas.barker</groupId>
+    <artifactId>barker</artifactId>
+    <version>0.1-SNAPSHOT</version>
+
+    <name>Barker</name>
+    <description>Guided step-by-step demo to demponstrate Cassandra's resilience</description>
+    <organization>
+        <name>Robert Stupp, Koeln, Germany, robert-stupp.de</name>
+        <url>http://caffinitas.org/</url>
+    </organization>
+    <url>http://caffinitas.org/</url>
+
+    <prerequisites>
+        <maven>3.2</maven>
+    </prerequisites>
+
+    <inceptionYear>2014</inceptionYear>
+    <developers>
+        <developer>
+            <name>Robert Stupp</name>
+            <email>robert@caffinitas.org</email>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>Apache License Version 2.0</comments>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:https://github.com/snazy/barker.git</connection>
+        <developerConnection>scm:git:https://github.com/snazy/barker.git</developerConnection>
+        <url>https://github.com/snazy/barker</url>
+    </scm>
+    <issueManagement>
+        <system>Github</system>
+        <url>https://github.com/snazy/barker/issues</url>
+    </issueManagement>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <version.com.datastax.cassandra.cassandra-driver-core>2.1.6</version.com.datastax.cassandra.cassandra-driver-core>
+        <version.io.dropwizard.metrics>3.1.2</version.io.dropwizard.metrics>
+        <version.org.eclipse.jetty.jetty>9.2.11.v20150529</version.org.eclipse.jetty.jetty>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.datastax.cassandra</groupId>
+            <artifactId>cassandra-driver-core</artifactId>
+            <version>${version.com.datastax.cassandra.cassandra-driver-core}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>${version.org.eclipse.jetty.jetty}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard.metrics</groupId>
+            <artifactId>metrics-core</artifactId>
+            <version>${version.io.dropwizard.metrics}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>org.caffinitas.barker.Barker</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attached</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
